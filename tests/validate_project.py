@@ -40,6 +40,12 @@ assert "Training.unity" in editor
 assert "InputSystemUIInputModule" in editor
 assert "AssignDefaultActions()" in editor
 assert editor.count("{") == editor.count("}")
+assert "GenerateTrainingScene(bool automatic)" in editor
+bootstrap = read("Assets/FootballElite/Scripts/Editor/FirstLaunchBootstrap.cs")
+assert "[InitializeOnLoad]" in bootstrap
+assert "scene.name != \"Untitled\"" in bootstrap
+assert "TrainingSceneBuilder.GenerateTrainingScene(true)" in bootstrap
+assert "scene.path" in bootstrap and "GetRootGameObjects" in bootstrap
 
 for method in [
     "CreatePitch()", "CreateStadium()", "CreateGoals(match)", "CreateLighting()",

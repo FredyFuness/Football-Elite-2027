@@ -1,0 +1,20 @@
+name: Validar Football Elite
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  project:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+      - name: Validar estructura Unity y lógica
+        run: python3 tests/validate_project.py

@@ -408,10 +408,10 @@ namespace FootballElite.Editor
             return obj;
         }
 
-        private static Font Font()
+        private static UnityEngine.Font ResolveUIFont()
         {
-            Font font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-            return font != null ? font : Font.CreateDynamicFontFromOSFont("Arial", 18);
+            UnityEngine.Font font = Resources.GetBuiltinResource<UnityEngine.Font>("LegacyRuntime.ttf");
+            return font != null ? font : UnityEngine.Font.CreateDynamicFontFromOSFont("Arial", 18);
         }
 
         private static Text Label(string name, Transform parent, Vector2 anchor,
@@ -420,7 +420,7 @@ namespace FootballElite.Editor
             GameObject go = new GameObject(name, typeof(RectTransform), typeof(CanvasRenderer), typeof(Text));
             Rect(go, parent, anchor, offset, size);
             Text label = go.GetComponent<Text>();
-            label.font = Font();
+            label.font = ResolveUIFont();
             label.text = initialText;
             label.alignment = TextAnchor.MiddleCenter;
             label.fontSize = sizePx;

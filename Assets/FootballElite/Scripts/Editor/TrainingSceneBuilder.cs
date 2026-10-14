@@ -490,6 +490,8 @@ namespace FootballElite.Editor
 
             GameObject eventSystem = new GameObject("EventSystem", typeof(EventSystem), typeof(InputSystemUIInputModule));
             eventSystem.transform.position = Vector3.zero;
+            // An InputSystemUIInputModule created from script needs UI actions assigned.
+            eventSystem.GetComponent<InputSystemUIInputModule>().AssignDefaultActions();
         }
     }
 }

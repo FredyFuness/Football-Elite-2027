@@ -78,8 +78,13 @@ namespace FootballElite.Editor
             Material existing = AssetDatabase.LoadAssetAtPath<Material>(path);
             if (existing == null)
             {
-                Shader shader = Shader.Find("Universal Render Pipeline/Lit");
+                // The repository includes URP but its pipeline asset is not configured
+                // until a Unity project renderer is selected. Use built-in Standard
+                // meanwhile to avoid magenta materials in a freshly opened project.
+                bool urpActive = GraphicsSettings.currentRenderPipeline != null;
+                Shader shader = Shader.Find(urpActive ? "Universal Render Pipeline/Lit" : "Standard");
                 if (shader == null) shader = Shader.Find("Standard");
+                if (shader == null) shader = Shader.Find("Unlit/Color");
                 existing = new Material(shader) { name = name };
                 AssetDatabase.CreateAsset(existing, path);
             }

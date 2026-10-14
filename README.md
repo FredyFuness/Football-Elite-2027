@@ -25,10 +25,13 @@ La escena se genera desde el Editor de Unity, sin depender de un archivo de esce
    git clone https://github.com/FredyFuness/Football-Elite-2027.git
    ```
 3. Abre la carpeta principal con **Unity Hub → Add project from disk**. Espera a que importe las dependencias.
-4. En el Editor, selecciona **Football Elite → Crear escenario de entrenamiento (Fase 1)**.
-5. Abre `Assets/FootballElite/Scenes/Training.unity` y pulsa **Play**.
+4. En **Edit → Project Settings → Player → Other Settings**, comprueba que **Active Input Handling** esté en **Input System Package (New)** o **Both**. Si Unity pide reiniciar, acepta.
+5. En el Editor, selecciona **Football Elite → Crear escenario de entrenamiento (Fase 1)**.
+6. Abre `Assets/FootballElite/Scenes/Training.unity` y pulsa **Play**.
 
 La escena y los materiales se generan automáticamente; después de generarlos, guarda y versiona los archivos `.unity`, `.mat` y sus `.meta` en Git.
+
+**Nota sobre renderizado:** el proyecto incluye el paquete URP para la fase artística siguiente, pero en esta primera versión no se configura automáticamente un Render Pipeline Asset. Si no hay URP activo, el generador utilizará materiales Standard para que el prototipo no aparezca rosa. Más adelante añadiremos perfiles URP específicos para PC y iPhone.
 
 ### Controles
 

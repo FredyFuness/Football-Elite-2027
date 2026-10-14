@@ -28,6 +28,15 @@ namespace FootballElite.Editor
                     "Se generará Training.unity y se reemplazará la escena abierta. ¿Continuar?", "Generar", "Cancelar"))
                 return;
 
+            GenerateTrainingScene(false);
+        }
+
+        /// <summary>
+        /// Automatic first launch is silent, manual creation keeps its confirmation.
+        /// Do not call this while a user-edited scene is open.
+        /// </summary>
+        internal static void GenerateTrainingScene(bool automatic)
+        {
             EnsureFolder(Scenes);
             EnsureFolder(Materials);
             MakeMaterials();
@@ -55,8 +64,17 @@ namespace FootballElite.Editor
             EditorSceneManager.SaveScene(scene, Scenes + "/Training.unity");
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
-            EditorUtility.DisplayDialog("Football Elite",
-                "La Fase 1 se generó correctamente. Abre Training.unity y pulsa Play.", "Aceptar");
+            if (automatic)
+            {
+                Debug.Log("[Football Elite] La cancha, los jugadores y el estadio ya están generados en Training.unity. Abre Game y pulsa Play.");
+                EditorApplication.delayCall += () =>
+                    EditorGUIUtility.PingObject(AssetDatabase.LoadAssetAtPath<SceneAsset>(Scenes + "/Training.unity"));
+            }
+            else
+            {
+                EditorUtility.DisplayDialog("Football Elite",
+                    "La Fase 1 se generó correctamente. Abre Training.unity y pulsa Play.", "Aceptar");
+            }
         }
 
         private static void EnsureFolder(string path)

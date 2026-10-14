@@ -26,8 +26,8 @@ La escena se genera desde el Editor de Unity, sin depender de un archivo de esce
    ```
 3. Abre la carpeta principal con **Unity Hub → Add project from disk**. Espera a que importe las dependencias.
 4. En **Edit → Project Settings → Player → Other Settings**, comprueba que **Active Input Handling** esté en **Input System Package (New)** o **Both**. Si Unity pide reiniciar, acepta.
-5. En el Editor, selecciona **Football Elite → Crear escenario de entrenamiento (Fase 1)**.
-6. Abre `Assets/FootballElite/Scenes/Training.unity` y pulsa **Play**.
+5. En la primera apertura, si Unity muestra únicamente su escena vacía `Untitled`, el proyecto **genera automáticamente** `Training.unity` con cancha, estadio, jugador y balón. Espera a que termine la importación.
+6. Selecciona la pestaña **Game** y pulsa **Play**. Si ya tienes una escena personalizada o se omitió la generación automática, utiliza **Football Elite → Crear escenario de entrenamiento (Fase 1)**. El generador manual pide confirmación antes de reemplazar la escena abierta.
 
 La escena y los materiales se generan automáticamente; después de generarlos, guarda y versiona los archivos `.unity`, `.mat` y sus `.meta` en Git.
 

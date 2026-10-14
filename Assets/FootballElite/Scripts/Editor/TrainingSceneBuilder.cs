@@ -217,13 +217,13 @@ namespace FootballElite.Editor
             }
         }
 
-        private static void Pole(Vector3 bottom, Vector3 top, float radius, Material material)
+        private static void Pole(Vector3 bottom, Vector3 top, float radius, Material material, bool collide = false)
         {
             Vector3 delta = top - bottom;
             GameObject pole = Primitive(PrimitiveType.Cylinder, "Goal frame / net wire", null,
                 (bottom + top) * .5f,
                 new Vector3(radius * 2, delta.magnitude * .5f, radius * 2),
-                material);
+                material, collide);
             pole.transform.rotation = Quaternion.FromToRotation(Vector3.up, delta.normalized);
         }
 
@@ -233,9 +233,9 @@ namespace FootballElite.Editor
             {
                 float z = side * 50.12f;
                 float backZ = z + side * 2.2f;
-                Pole(new Vector3(-3.66f, 0, z), new Vector3(-3.66f, 2.44f, z), .075f, white);
-                Pole(new Vector3(3.66f, 0, z), new Vector3(3.66f, 2.44f, z), .075f, white);
-                Pole(new Vector3(-3.66f, 2.44f, z), new Vector3(3.66f, 2.44f, z), .075f, white);
+                Pole(new Vector3(-3.66f, 0, z), new Vector3(-3.66f, 2.44f, z), .075f, white, true);
+                Pole(new Vector3(3.66f, 0, z), new Vector3(3.66f, 2.44f, z), .075f, white, true);
+                Pole(new Vector3(-3.66f, 2.44f, z), new Vector3(3.66f, 2.44f, z), .075f, white, true);
                 for (float x = -3.65f; x <= 3.65f; x += .73f)
                 {
                     Pole(new Vector3(x, .07f, backZ), new Vector3(x, 2.40f, backZ), .009f, metal);
